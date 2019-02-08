@@ -27,8 +27,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: yarn generate
-
-
+      - run:
+          name: 'Deploy to Hosting'
+          command: >-
+              ln -s ./node_modules/firebase-tools/bin/firebase . &&
+              ./firebase deploy --only hosting --project "$FIREBASE_PROJECT_ID" --token "$FIREBASE_TOKEN"
 
 workflows:
   version: 2
