@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  deploy:
     docker:
       - image: circleci/node:10
 
@@ -32,3 +32,13 @@ jobs:
           command: >- 
               ln -s ./node_modules/firebase-tools/bin/firebase . &&
               ./firebase deploy --only hosting --project "$FIREBASE_PROJECT_ID" --token "$FIREBASE_TOKEN"
+              
+workflows:
+  version: 2
+  standard-workflow:
+    jobs:
+      - deploy
+          filters:
+            branches:
+              only:
+                - master
