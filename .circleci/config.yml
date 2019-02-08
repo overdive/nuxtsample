@@ -29,15 +29,18 @@ jobs:
       - run: yarn generate
       - run:
           name: 'Deploy to Hosting'
-          command: >- 
+          command: >-
               ln -s ./node_modules/firebase-tools/bin/firebase . &&
               ./firebase deploy --only hosting --project "$FIREBASE_PROJECT_ID" --token "$FIREBASE_TOKEN"
-              
+
 workflows:
   version: 2
   standard-workflow:
     jobs:
       - deploy:
+          requires:
+              - build
+          context: league-front-prod
           filters:
               branches:
                   only:
