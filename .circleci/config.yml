@@ -38,7 +38,10 @@ workflows:
   standard-workflow:
     jobs:
       - deploy:
+          requires:
+              - build
+          context: league-front-prod
           filters:
-            branches:
-              only:
-                - master
+              branches:
+                  only:
+                      - master
