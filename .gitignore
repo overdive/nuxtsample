@@ -85,5 +85,5 @@ sw.*
 
 # Firebase init
 .firebaserc
-.firebase
+#.firebase
 firebase-debug.log
