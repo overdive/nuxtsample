@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/node:10
 
-    working_directory: ~/overdive/nuxtsample
+    working_directory: ~/repo
 
     steps:
       - checkout
@@ -19,7 +19,7 @@ jobs:
       - run: yarn install
       - run:
           name: 'Install Dependecies'
-          command: yarn global add firebase-tools
+          command: yarn install --save-dev firebase-tools
 
       - save_cache:
           paths:
@@ -29,7 +29,7 @@ jobs:
       - run: yarn generate
       - run:
           name: 'Deploy to Hosting'
-          command: ~/node_modules/firebase-tools/bin/firebase deploy --only hosting --project "$FIREBASE_PJ" --token "$FIREBASE_TOKEN"
+          command: node_modules/.bin/firebase deploy --only hosting --project "$FIREBASE_PJ" --token "$FIREBASE_TOKEN"
 
 workflows:
   version: 2
