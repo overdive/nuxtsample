@@ -2,7 +2,7 @@
   "name": "venture-sample",
   "version": "1.0.0",
   "description": "My grand Nuxt.js project",
-  "author": "橋本 純也@GDES",
+  "author": "",
   "private": true,
   "scripts": {
     "dev": "nuxt --port 3333",
